@@ -10,65 +10,72 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 firebase.initializeApp({
-  // your config
-})
+  apiKey: 'AIzaSyCB4BzVQ83GUVtY7txPo-43WW9m-kC2iVg',
+  authDomain: 'minichat-74e3a.firebaseapp.com',
+  projectId: 'minichat-74e3a',
+  storageBucket: 'minichat-74e3a.appspot.com',
+  messagingSenderId: '557250745904',
+  appId: '1:557250745904:web:bc5059e12aba47f7257ff5',
+  measurementId: 'G-S15F6L2QH2'
+});
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
-const analytics = firebase.analytics();
-
+// const analytics = firebase.analytics();
 
 function App() {
-
   const [user] = useAuthState(auth);
 
   return (
-    <div className="App">
+    <div className='App'>
       <header>
-        <h1>⚛️🔥💬</h1>
+        <h1>
+          👨🏽‍💻👩🏼‍💻🔥💬🫡Groupe 5 <span className='mini-color'>Minichat</span>
+        </h1>
         <SignOut />
       </header>
 
-      <section>
-        {user ? <ChatRoom /> : <SignIn />}
-      </section>
-
+      <section>{user ? <ChatRoom /> : <SignIn />}</section>
     </div>
   );
 }
 
 function SignIn() {
-
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
-  }
+  };
 
   return (
     <>
-      <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
-      <p>Do not violate the community guidelines or you will be banned for life!</p>
+      <button className='sign-in' onClick={signInWithGoogle}>
+        Connectez-vous avec Google
+      </button>
+      <p className='rule'>
+        Ne violez pas les règles du Groupe 5 sinon vous seriez banni😡
+      </p>
     </>
-  )
-
+  );
 }
 
 function SignOut() {
-  return auth.currentUser && (
-    <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
-  )
+  return (
+    auth.currentUser && (
+      <button className='sign-out' onClick={() => auth.signOut()}>
+        Déconnexion
+      </button>
+    )
+  );
 }
-
 
 function ChatRoom() {
   const dummy = useRef();
   const messagesRef = firestore.collection('messages');
-  const query = messagesRef.orderBy('createdAt').limit(25);
+  const query = messagesRef.orderBy('createdAt').limit(45);
 
   const [messages] = useCollectionData(query, { idField: 'id' });
 
   const [formValue, setFormValue] = useState('');
-
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -80,44 +87,53 @@ function ChatRoom() {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
       photoURL
-    })
+    });
 
     setFormValue('');
     dummy.current.scrollIntoView({ behavior: 'smooth' });
-  }
+  };
 
-  return (<>
-    <main>
+  return (
+    <>
+      <main>
+        {messages &&
+          messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
 
-      {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+        <span ref={dummy}></span>
+      </main>
 
-      <span ref={dummy}></span>
+      <form onSubmit={sendMessage}>
+        <input
+          value={formValue}
+          onChange={(e) => setFormValue(e.target.value)}
+          placeholder='Dites quelquechose'
+        />
 
-    </main>
-
-    <form onSubmit={sendMessage}>
-
-      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
-
-      <button type="submit" disabled={!formValue}>🕊️</button>
-
-    </form>
-  </>)
+        <button className='submit-btn' type='submit' disabled={!formValue}>
+          📨
+        </button>
+      </form>
+    </>
+  );
 }
-
 
 function ChatMessage(props) {
   const { text, uid, photoURL } = props.message;
 
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 
-  return (<>
-    <div className={`message ${messageClass}`}>
-      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
-      <p>{text}</p>
-    </div>
-  </>)
+  return (
+    <>
+      <div className={`message ${messageClass}`}>
+        <img
+          src={
+            photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'
+          }
+        />
+        <p>{text} 🧑🏾‍💻</p>
+      </div>
+    </>
+  );
 }
-
 
 export default App;

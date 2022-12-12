@@ -70,7 +70,6 @@ form button {
   background-color: rgb(56, 56, 143);
 }
 
-
 input {
   line-height: 1.5;
   width: 100%;
@@ -83,7 +82,7 @@ input {
 }
 
 button {
-  background-color: #282c34; /* Green */
+  background-color: #2a3428; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -99,18 +98,31 @@ button:disabled {
   cursor: not-allowed;
 }
 
-
 .sign-in {
   color: #282c34;
   background: white;
   max-width: 400px;
   margin: 0 auto;
 }
+.sign-in:hover {
+  color: black;
+  background: #6649b8;
+}
+.rule {
+  font-size: 25px;
+  margin-bottom: 10px;
+  /* margin: 0 auto; */
+  border: rgba(18, 140, 126, 0.631) solid 1px;
+  background-color: #6649b8;
+  display: flex;
+  align-items: center;
+  margin-left: 80px;
+  margin-right: 80px;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
+}
 
-
-
-
-ul, li {
+ul,
+li {
   text-align: left;
   list-style: none;
 }
@@ -131,14 +143,13 @@ p {
   align-items: center;
 }
 
-
 .sent {
   flex-direction: row-reverse;
 }
 
 .sent p {
   color: white;
-  background: #0b93f6;
+  background: #128c7e;
   align-self: flex-end;
 }
 .received p {
@@ -152,4 +163,13 @@ img {
   border-radius: 50%;
   margin: 2px 5px;
 }
-
+.submit-btn {
+  font-size: 40px;
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+  justify-content: center;
+}
+.mini-color {
+  color: red;
+}
