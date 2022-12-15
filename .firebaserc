@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "fireship-demos"
-  }
+    "default": "minichat-74e3a",
+    "minichat.develop": "minichat-74e3a"
+  },
+  "targets": {},
+  "etags": {}
 }
