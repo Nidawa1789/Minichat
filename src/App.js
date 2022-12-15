@@ -11,8 +11,8 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyCB4BzVQ83GUVtY7txPo-43WW9m-kC2iVg',
-  // authDomain: 'minichat-74e3a.firebaseapp.com',
-  authDomain: 'minichat-develop.onrender.com',
+  authDomain: 'minichat-74e3a.firebaseapp.com',
+  // authDomain: 'minichat-develop.onrender.com',
   projectId: 'minichat-74e3a',
   storageBucket: 'minichat-74e3a.appspot.com',
   messagingSenderId: '557250745904',
