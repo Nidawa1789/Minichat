@@ -11,7 +11,8 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 firebase.initializeApp({
   apiKey: 'AIzaSyCB4BzVQ83GUVtY7txPo-43WW9m-kC2iVg',
-  authDomain: 'minichat-74e3a.firebaseapp.com',
+  // authDomain: 'minichat-74e3a.firebaseapp.com',
+  authDomain: 'minichat-develop.onrender.com',
   projectId: 'minichat-74e3a',
   storageBucket: 'minichat-74e3a.appspot.com',
   messagingSenderId: '557250745904',
@@ -57,7 +58,7 @@ function SignIn() {
       </button>
       <p className='rule'>
         Ne violez pas les règles du Groupe 5 sinon vous seriez banni{' '}
-        <span alt='img' aria-label='hungry'>
+        <span role='img' aria-label='love'>
           😡
         </span>
       </p>
@@ -117,7 +118,9 @@ function ChatRoom() {
         />
 
         <button className='submit-btn' type='submit' disabled={!formValue}>
-          📨
+          <span role='img' aria-label='courrier'>
+            📨
+          </span>
         </button>
       </form>
     </>
@@ -134,11 +137,12 @@ function ChatMessage(props) {
       <div className={`message ${messageClass}`}>
         <img
           src={
-            photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'
+            photoURL ||
+            'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
           }
           alt='image google'
         />
-        <p>{text} 🧑🏾‍💻</p>
+        <p>{text} </p>
       </div>
     </>
   );
